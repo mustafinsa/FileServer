@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <servlet>
+        <servlet-name>SearchController</servlet-name>
+        <servlet-class>com.mustafinsa.fileserver.controller.SearchController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchController</servlet-name>
+        <url-pattern>/SearchController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DownloadController</servlet-name>
+        <servlet-class>com.mustafinsa.fileserver.controller.DownloadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadController</servlet-name>
+        <url-pattern>/DownloadController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UploadController</servlet-name>
+        <servlet-class>com.mustafinsa.fileserver.controller.UploadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadController</servlet-name>
+        <url-pattern>/UploadController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteController</servlet-name>
+        <servlet-class>com.mustafinsa.fileserver.controller.DeleteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteController</servlet-name>
+        <url-pattern>/DeleteController</url-pattern>
+    </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index page</title>
+</head>
+<body>
+
+<h1>Search file</h1>
+Enter filename: <br/>
+
+<form action="SearchController" method="get">
+    <input type="text" name="search"/>
+    <input type="submit" value="Search"/>
+</form>
+<br/> <br/>
+<hr>
+<h1>Download file</h1>
+Enter file id <br/>
+
+<form action="DownloadController" method="get">
+    <input type="text" name="download_id">
+    <input type="submit" value="Download"/>
+</form>
+<br/> <br/>
+<hr>
+<h1>Upload file</h1>
+
+<form action="UploadController" method="post" enctype="multipart/form-data">
+    Select File to Upload:<br>
+    <input type="file" name="fileName">
+    <input type="submit" value="Upload">
+</form>
+
+<br/> <br/>
+<hr>
+<h1>Remove file</h1>
+Enter file id <br/>
+
+<form action="DeleteController" method="get">
+    <input type="text" name="delete_id">
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>
