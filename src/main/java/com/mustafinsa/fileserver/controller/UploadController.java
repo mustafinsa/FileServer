@@ -33,7 +33,8 @@ public class UploadController extends HttpServlet {
                 FileItem fileItem = fileItemsIterator.next();
                 String fileName = fileItem.getName();
                 File file = new File(savePath + File.separator + fileItem.getName());
-                if (fileDAO.saveFile(fileItem, file)) {
+                boolean isSave = fileDAO.saveFile(fileItem, file);
+                if (isSave) {
                     if (fileName != null && !fileName.isEmpty()) {
                         req.setAttribute("message", fileName + " file uploaded successfully!");
                     } else {

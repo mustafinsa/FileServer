@@ -7,37 +7,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FileDAO {
-    private Map<Integer, File> files = Utils.getFiles();
+    private Map<String, File> files = Utils.getFiles();
     private static FileDAO ourInstance = new FileDAO();
 
     public static FileDAO getInstance() {
         return ourInstance;
     }
 
-    private FileDAO() {}
+    private FileDAO() {
+    }
 
-    public File getFileById(int id) {
+    public File getFileById(String id) {
         return files.get(id);
     }
 
     public boolean saveFile(FileItem fileItem, File file) {
         boolean result = false;
-        if (!files.containsKey(file.hashCode())) {
-            try {
-                fileItem.write(file);
+        try {
+            fileItem.write(file);
+            if (!files.containsKey(Utils.checkMD5(file))) {
                 //update map
                 files = Utils.getFiles();
                 result = true;
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                file.delete();
             }
+        } catch (Exception e) {
+            files = Utils.getFiles();
+            e.printStackTrace();
         }
+
         return result;
     }
 
-    public Map<Integer, String> searchByName(String name) {
-        Map<Integer, String> result = new HashMap<>();
-        for (Map.Entry<Integer, File> pair : files.entrySet()) {
+    public Map<String, String> searchByName(String name) {
+        Map<String, String> result = new HashMap<>();
+        for (Map.Entry<String, File> pair : files.entrySet()) {
             String fileName = Utils.getFileName(pair.getValue());
             if (fileName.contains(name)) {
                 result.put(pair.getKey(), fileName);
@@ -49,7 +54,7 @@ public class FileDAO {
         return result;
     }
 
-    public String deleteById(int id) {
+    public String deleteById(String id) {
         String result = null;
         File file = files.get(id);
         if (file != null) {

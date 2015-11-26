@@ -13,13 +13,7 @@ public class DeleteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int delete_id = 0;
-        try {
-            delete_id = Integer.parseInt(req.getParameter("delete_id"));
-        } catch (NumberFormatException e) {
-            req.setAttribute("message", "Some error with id");
-            req.getRequestDispatcher("message.jsp").forward(req, resp);
-        }
+        String delete_id = req.getParameter("delete_id");
 
         String status = fileDAO.deleteById(delete_id);
 

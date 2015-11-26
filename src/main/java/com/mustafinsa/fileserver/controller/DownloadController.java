@@ -18,13 +18,7 @@ public class DownloadController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int download_id = 0;
-        try {
-            download_id = Integer.parseInt(req.getParameter("download_id"));
-        } catch (NumberFormatException e) {
-            req.setAttribute("message", "Some error with id");
-            req.getRequestDispatcher("message.jsp").forward(req, resp);
-        }
+        String download_id = req.getParameter("download_id");
 
         File file = fileDAO.getFileById(download_id);
         if (file != null) {

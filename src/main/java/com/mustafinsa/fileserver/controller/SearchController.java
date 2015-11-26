@@ -19,7 +19,7 @@ public class SearchController extends HttpServlet{
             req.setAttribute("message", "Name cannot be empty");
             req.getRequestDispatcher("message").forward(req, resp);
         } else {
-            Map<Integer, String> searchMap = fileDAO.searchByName(searchString);
+            Map<String, String> searchMap = fileDAO.searchByName(searchString);
             req.setAttribute("search_result", searchMap);
             req.getRequestDispatcher("search_result.jsp").forward(req, resp);
         }
