@@ -6,15 +6,15 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FileDAO {
+public class FileDao {
     private Map<String, File> files = Utils.getFiles();
-    private static FileDAO ourInstance = new FileDAO();
+    private static FileDao ourInstance = new FileDao();
 
-    public static FileDAO getInstance() {
+    public static FileDao getInstance() {
         return ourInstance;
     }
 
-    private FileDAO() {
+    private FileDao() {
     }
 
     public File getFileById(String id) {

@@ -1,6 +1,6 @@
 package com.mustafinsa.fileserver.controller;
 
-import com.mustafinsa.fileserver.model.FileDAO;
+import com.mustafinsa.fileserver.model.FileDao;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -10,12 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class UploadController extends HttpServlet {
-    private FileDAO fileDAO = FileDAO.getInstance();
+    private FileDao fileDao = FileDao.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,12 +27,10 @@ public class UploadController extends HttpServlet {
 
         try {
             List<FileItem> fileItemsList = uploader.parseRequest(req);
-            Iterator<FileItem> fileItemsIterator = fileItemsList.iterator();
-            while (fileItemsIterator.hasNext()) {
-                FileItem fileItem = fileItemsIterator.next();
+            for (FileItem fileItem : fileItemsList) {
                 String fileName = fileItem.getName();
                 File file = new File(savePath + File.separator + fileItem.getName());
-                boolean isSave = fileDAO.saveFile(fileItem, file);
+                boolean isSave = fileDao.saveFile(fileItem, file);
                 if (isSave) {
                     if (fileName != null && !fileName.isEmpty()) {
                         req.setAttribute("message", fileName + " file uploaded successfully!");

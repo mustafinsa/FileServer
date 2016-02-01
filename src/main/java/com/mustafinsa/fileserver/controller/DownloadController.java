@@ -1,6 +1,6 @@
 package com.mustafinsa.fileserver.controller;
 
-import com.mustafinsa.fileserver.model.FileDAO;
+import com.mustafinsa.fileserver.model.FileDao;
 import com.mustafinsa.fileserver.model.Utils;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -13,14 +13,14 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class DownloadController extends HttpServlet {
-    private FileDAO fileDAO = FileDAO.getInstance();
+    private FileDao fileDao = FileDao.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String download_id = req.getParameter("download_id");
 
-        File file = fileDAO.getFileById(download_id);
+        File file = fileDao.getFileById(download_id);
         if (file != null) {
             boolean flag = downloadService(resp, file);
             if (flag) {
